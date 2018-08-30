@@ -32,6 +32,7 @@ class Menu {
     
     func checkInput () {
         let userChoice = InputManager.playerInput(numberOfChoices: 8)
+        
         switch userChoice {
         case 1:
             // Add game

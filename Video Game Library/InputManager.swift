@@ -29,8 +29,74 @@ class InputManager  {
                 selectionMade = true
                 return userInput
             }
+            else {
+                print("Not valid!")
+            }
         } while !selectionMade
         return -3
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    static func getInput<T>() -> T {
+        var input: T? = nil
+        
+        repeat {
+            
+            let line = readLine()!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if line != "" {
+                
+                if line is Int {
+                    guard let number = Int(line) else {
+                        print("Can't convert")
+                        continue
+                        
+                    } // do somethin here
+                    input = number as? T
+                }
+                
+                if input is String {
+                    input = line as? T
+                }
+                
+
+
+            } else {
+                // give error
+                print("Not valid")
+            }
+            
+        } while input == nil
+        
+        return input!
+    }
+    
 }
 
