@@ -9,11 +9,8 @@
 import Foundation
 
 let menu = Menu()
-//menu.start()
-
 let game = Game(name: "Return of the debug")
 let game2 = Game(name: "Nacho revenge")
-game.checkOut()
-game2.checkOut()
-Library.printOutGames()
-
+Library.addToCurrentLibrary(game: game)
+Library.addToCurrentLibrary(game: game2)
+menu.start()

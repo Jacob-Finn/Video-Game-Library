@@ -11,8 +11,8 @@ class Menu {
     var hasQuit = false
     
     func start() {
-        while !hasQuit {
-            print("""
+        
+        print("""
         Welcome to the video game library!
         Menu commands:
         1. Add Game
@@ -23,7 +23,9 @@ class Menu {
         6. List Checked Out Games
         7. help
         8. Quit
+
         """)
+        while !hasQuit {
             checkInput()
         } // The only way we can get to this statement is if the user has decided to quit. Effectively ending the program
         print("Goodbye!")
@@ -35,22 +37,22 @@ class Menu {
         
         switch userChoice {
         case 1:
-            // Add game
+            addGame()
             return
         case 2:
-            // Remove game
+            removeGame()
             return
         case 3:
-            // list games
+            Library.printCurrentLibrary()
             return
         case 4:
-            // check out game
+            checkOutGame()
             return
         case 5:
             // check in game
             return
         case 6:
-            // list checked out
+            Library.printOutGames()
             return
         case 7:
             help()
@@ -61,17 +63,61 @@ class Menu {
         default:
             print("Error")
         }
+    } // End of CheckInput
+    
+    func checkOutGame() {
+        var userChoice: Int
+        repeat {
+        print("Please enter the number of the game you would like to check out.")
+        userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
+        if userChoice > Library.currentGameLibrary.count {
+            print("Not a valid selection.")
+            return
+        }
+        }  while userChoice > Library.currentGameLibrary.count
+        
+        let selectedGame = Library.currentGameLibrary[userChoice - 1]
+        selectedGame.checkOut()
+        
+    } // end of CheckOutGame
+    
+    func removeGame() {
+     var userChoice: Int
+        repeat {
+            print("Please enter the number of the game you would like to remove.")
+            userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
+            if userChoice > Library.currentGameLibrary.count {
+                print("Not a valid selection.")
+                return
+            }
+        }  while userChoice > Library.currentGameLibrary.count
+        Library.removeFromCurrentLibrary(at: userChoice)
     }
     
     
     
     
+    func addGame() {
+        let gameName: String? = nil
+        print("What is the game's name?")
+        repeat {
+            let userInput = readLine()
+            if userInput == "" {
+                print("Invalid Input!")
+                return
+            } else {
+                guard let gameName = String?(userInput!) else { return }
+                Library.addToCurrentLibrary(game: gameName)
+            }
+        } while gameName != nil
+        print("Game added!")
+    } // end of AddGame
     
     
     
     
     func quit() {
-    hasQuit = true
+        hasQuit = true
     } // end of quit
     func help() {
         print("""
@@ -84,6 +130,7 @@ class Menu {
         6. List Checked Out Games
         7. help
         8. Quit
+
         """)
     }// end of help
     
@@ -93,5 +140,5 @@ class Menu {
     
     
     
-
+    
 }
