@@ -11,7 +11,7 @@ class Library {
    static var checkedOutGames = [Game]()
    static var returnGamesByDate = [String: String]()
    static var currentGameLibrary = [Game]()
-    
+
     
     // Using method overrides to allow me to manually add a game as well as add a game by string input
     static func addToCurrentLibrary (game: String)
@@ -23,20 +23,40 @@ class Library {
     {
         currentGameLibrary.append(game)
     }
+    
+    static func sortCurrentLibrary(){
+        currentGameLibrary.sort(by: { $0.name < $1.name})
+    }
+    
+    
+    
     static func printCurrentLibrary() {
+        sortCurrentLibrary()
         for (Index, game) in currentGameLibrary.enumerated() {
-            print("\(Index + 1) \(game.name)")
+            if game.checkedInString != nil {
+                print("\(Index + 1). \(game.name)\n   Returned: \(game.checkedInString!)")
+            }else {
+                print("\(Index + 1). \(game.name)")
+            }
         }
+    }
+    static func returnGame(game: Game) {
+        currentGameLibrary.append(game)
+        game.checkedInDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        let checkedInString = dateFormatter.string(from: game.checkedInDate!)
+        game.checkedInString = checkedInString
+        print("\(game.name) returned.")
     }
     
     
     
     
     
-    
-    static func removeFromCurrentLibrary(at index: Int) {
-        print("Removing \(currentGameLibrary[index - 1].name)")
-        currentGameLibrary.remove(at: index - 1)
+    static func removeFromCurrentLibrary(at slot: Int) {
+        print("Removing \(currentGameLibrary[slot].name)")
+        currentGameLibrary.remove(at: slot)
     }
     
     static func checkOutGame(game: Game) {

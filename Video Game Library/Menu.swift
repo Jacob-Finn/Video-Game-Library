@@ -49,7 +49,7 @@ class Menu {
             checkOutGame()
             return
         case 5:
-            // check in game
+            checkInGame()
             return
         case 6:
             Library.printOutGames()
@@ -65,6 +65,21 @@ class Menu {
         }
     } // End of CheckInput
     
+    func checkInGame() {
+        var userChoice: Int
+        repeat {
+            print("Please enter the number of the game you would like to return.")
+            userChoice = InputManager.playerInput(numberOfChoices: Library.checkedOutGames.count)
+            if userChoice > Library.checkedOutGames.count {
+                print("Not a valid selection.")
+                return
+            }
+        }  while userChoice > Library.checkedOutGames.count || userChoice <= 0
+        let selectedGame = Library.checkedOutGames[userChoice - 1]
+        Library.returnGame(game: selectedGame)
+        Library.checkedOutGames.remove(at: userChoice - 1)
+    } // end of checkInGame
+    
     func checkOutGame() {
         var userChoice: Int
         repeat {
@@ -72,12 +87,13 @@ class Menu {
         userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
         if userChoice > Library.currentGameLibrary.count {
             print("Not a valid selection.")
-            return
+            continue
         }
-        }  while userChoice > Library.currentGameLibrary.count
+        }  while userChoice > Library.currentGameLibrary.count || userChoice <= 0
         
         let selectedGame = Library.currentGameLibrary[userChoice - 1]
         selectedGame.checkOut()
+        Library.removeFromCurrentLibrary(at: userChoice - 1)
         
     } // end of CheckOutGame
     
@@ -90,12 +106,9 @@ class Menu {
                 print("Not a valid selection.")
                 return
             }
-        }  while userChoice > Library.currentGameLibrary.count
-        Library.removeFromCurrentLibrary(at: userChoice)
-    }
-    
-    
-    
+        }  while userChoice > Library.currentGameLibrary.count || userChoice <= 0
+        Library.removeFromCurrentLibrary(at: userChoice - 1)
+    } // end of Remove game
     
     func addGame() {
         let gameName: String? = nil
@@ -113,12 +126,10 @@ class Menu {
         print("Game added!")
     } // end of AddGame
     
-    
-    
-    
     func quit() {
         hasQuit = true
     } // end of quit
+    
     func help() {
         print("""
         Menu commands:

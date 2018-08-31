@@ -11,23 +11,27 @@ class Game {
     let name: String
     var returnDate: Date?
     var checkedInDate: Date?
+    var checkedInString: String?
     let dateFormatter: DateFormatter
     var returnDateString: String
+    var hasBeenReturned: Bool
     
     init(name: String ) {
         self.name = name
         self.returnDate = nil
         self.checkedInDate = nil
+        self.checkedInString = nil
         self.dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
         self.returnDateString = ""
+        self.hasBeenReturned = false
     }
     func checkOut() {
         returnDate = Date()
         guard var checkedOutDate = returnDate else { return }
         let twoWeeksLater = Double(60 * 60 * 24 * 7 * 2)
         checkedOutDate.addTimeInterval(twoWeeksLater)
-//        print("Your book is due back \(dateFormatter.string(from: checkedOutDate)) ") debug print.
+       print("Your game is due back \(dateFormatter.string(from: checkedOutDate)) ")
         returnDateString = dateFormatter.string(from: checkedOutDate)
         returnDate = checkedOutDate
         Library.checkOutGame(game: self)
