@@ -14,7 +14,13 @@ class InputManager  {
     static func playerInput (numberOfChoices: Int) -> Int {
         repeat {
             userInput = readLine()!.trimmingCharacters(in: .whitespacesAndNewlines)
-            if let userInput = Int(userInput!) {
+            if userInput?.lowercased() == "quit" {
+               menu.quit()
+               break
+            }
+            if userInput?.lowercased() == "help" {
+                menu.help()
+            } else if let userInput = Int(userInput!) {
                 if (userInput <= 0) {
                     print("Did you really think that would work?")
                     continue
@@ -29,7 +35,7 @@ class InputManager  {
             else {
                 print("Not a valid selection!")
             }
-        } while !selectionMade || !Menu().hasQuit
+        } while !selectionMade
         return -3
     }
     

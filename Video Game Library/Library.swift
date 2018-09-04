@@ -8,8 +8,8 @@
 
 import Foundation
 class Library {
-   static var checkedOutGames = [Game]()
-   static var returnGamesByDate = [String: String]()
+private static var checkedOutGames = [Game]()
+ private  static var returnGamesByDate = [String: String]()
    static var currentGameLibrary = [Game]()
 
     
@@ -27,18 +27,20 @@ class Library {
     static func sortCurrentLibrary(){
         currentGameLibrary.sort(by: { $0.name < $1.name})
     }
-    
-    
-    
-    static func printCurrentLibrary() {
-        sortCurrentLibrary()
-        for (Index, game) in currentGameLibrary.enumerated() {
-            if game.checkedInString != nil {
-                print("\(Index + 1). \(game.name)\n   Returned: \(game.checkedInString!)")
-            }else {
-                print("\(Index + 1). \(game.name)")
-            }
-        }
+    static func getCurrentLibraryCount() -> Int {
+        return currentGameLibrary.count
+    }
+    static func getCheckedOutGamesCount() -> Int {
+        return checkedOutGames.count
+    }
+    static func getGameFromCurrentLibrary(at index: Int) -> Game {
+        return currentGameLibrary[index]
+    }
+    static func getGameFromOutGames(at index: Int) -> Game {
+        return checkedOutGames[index]
+    }
+    static func removeFromOutGames (at index: Int) {
+        checkedOutGames.remove(at: index - 1)
     }
     static func returnGame(game: Game) {
         currentGameLibrary.append(game)
@@ -68,6 +70,17 @@ class Library {
         print("The games you currently have out:")
         for (Index, game) in checkedOutGames.enumerated() {
             print("\(Index + 1). \(game.name) needs to be returned by \(returnGamesByDate[game.name]!)")
+        }
+    }
+    
+    static func printCurrentLibrary() {
+        sortCurrentLibrary()
+        for (Index, game) in currentGameLibrary.enumerated() {
+            if game.checkedInString != nil {
+                print("\(Index + 1). \(game.name)\n   Returned: \(game.checkedInString!)")
+            }else {
+                print("\(Index + 1). \(game.name)")
+            }
         }
     }
     

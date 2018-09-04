@@ -8,11 +8,12 @@
 
 import Foundation
 class Game {
+   // variables
     let name: String
-    var returnDate: Date?
     var checkedInDate: Date?
     var checkedInString: String?
     let dateFormatter: DateFormatter
+    var returnDate: Date?
     var returnDateString: String
     var hasBeenReturned: Bool
     
@@ -31,13 +32,10 @@ class Game {
         guard var checkedOutDate = returnDate else { return }
         let twoWeeksLater = Double(60 * 60 * 24 * 7 * 2)
         checkedOutDate.addTimeInterval(twoWeeksLater)
-       print("Your game is due back \(dateFormatter.string(from: checkedOutDate)) ")
+        print("Your game is due back \(dateFormatter.string(from: checkedOutDate)) ")
         returnDateString = dateFormatter.string(from: checkedOutDate)
         returnDate = checkedOutDate
         Library.checkOutGame(game: self)
-    }
-    func getDueDate() -> String {
-        return dateFormatter.string(from: returnDate!)
     }
     
 }

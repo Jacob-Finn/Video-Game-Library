@@ -8,7 +8,6 @@
 
 import Foundation
 class Menu {
-    var hasQuit = false
     
     func start() {
         
@@ -25,10 +24,10 @@ class Menu {
         8. Quit
 
         """)
-        while !hasQuit {
+        while 1 == 1 {
             checkInput()
-        } // The only way we can get to this statement is if the user has decided to quit. Effectively ending the program
-        print("Goodbye!")
+        }
+        
         
     } // End of start
     
@@ -69,15 +68,15 @@ class Menu {
         var userChoice: Int
         repeat {
             print("Please enter the number of the game you would like to return.")
-            userChoice = InputManager.playerInput(numberOfChoices: Library.checkedOutGames.count)
-            if userChoice > Library.checkedOutGames.count {
+            userChoice = InputManager.playerInput(numberOfChoices: Library.getCheckedOutGamesCount())
+            if userChoice > Library.getCheckedOutGamesCount() {
                 print("Not a valid selection.")
                 return
             }
-        }  while userChoice > Library.checkedOutGames.count || userChoice <= 0
-        let selectedGame = Library.checkedOutGames[userChoice - 1]
+        }  while userChoice > Library.getCheckedOutGamesCount() || userChoice <= 0
+        let selectedGame = Library.getGameFromOutGames(at: userChoice - 1)
         Library.returnGame(game: selectedGame)
-        Library.checkedOutGames.remove(at: userChoice - 1)
+        Library.removeFromOutGames(at: userChoice)
     } // end of checkInGame
     
     func checkOutGame() {
@@ -127,7 +126,8 @@ class Menu {
     } // end of AddGame
     
     func quit() {
-        hasQuit = true
+        print("Goodbye!")
+        exit(25)
     } // end of quit
     
     func help() {
