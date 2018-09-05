@@ -70,12 +70,12 @@ class DataImporter {
         }
     }
     func implementSave() { // Not yet functional but it is at a point to where it could be installed.
-        savedGamesArray.remove(at: (savedGamesArray.count - 1))
-        for (index, element) in savedGamesArray.enumerated() {
+      //  savedGamesArray.remove(at: (savedGamesArray.count - 1))
+       // for (index, element) in savedGamesArray.enumerated() {
        // print("\(index) \(element)")
         
             
-        }
+      //  }
     }
     
     
