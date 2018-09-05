@@ -13,8 +13,6 @@ class Menu {
     
      func start() {
         dataImporter.readInformation()
-        
-        dataImporter.testing()
         print("""
         Welcome to the video game library!
         Menu commands:
@@ -132,7 +130,7 @@ class Menu {
     func quit() {
         print("Goodbye!")
         dataImporter.resetSave()
-        DataImporter.saveInformation()
+      //  DataImporter.saveInformation() Will be used for saving later. Right now doesn't work
         exit(25)
     } // end of quit
     
