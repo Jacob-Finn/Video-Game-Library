@@ -8,10 +8,35 @@
 
 import Foundation
 class Library {
-private static var checkedOutGames = [Game]()
- private  static var returnGamesByDate = [String: String]()
-   static var currentGameLibrary = [Game]()
+    
+    private static var checkedOutGames = [Game]()
+    private  static var returnGamesByDate = [String: String]()
+    static var currentGameLibrary = [Game]()
 
+    
+    // Setters
+    
+    static func getCurrentLibraryCount() -> Int {
+        return currentGameLibrary.count
+    }
+    static func getCheckedOutGamesCount() -> Int {
+        return checkedOutGames.count
+    }
+    static func getGameFromCurrentLibrary(at index: Int) -> Game {
+        return currentGameLibrary[index]
+    }
+    static func getGameFromOutGames(at index: Int) -> Game {
+        return checkedOutGames[index]
+    }
+    static func getCurrentLibrary() -> [Game]{
+        return currentGameLibrary
+    }
+    static func getCheckedOutGames() -> [Game] {
+        return checkedOutGames
+    }
+    
+    
+    
     
     // Using method overrides to allow me to manually add a game as well as add a game by string input
     static func addToCurrentLibrary (game: String)
@@ -27,21 +52,7 @@ private static var checkedOutGames = [Game]()
     static func sortCurrentLibrary(){
         currentGameLibrary.sort(by: { $0.name < $1.name})
     }
-    static func getCurrentLibraryCount() -> Int {
-        return currentGameLibrary.count
-    }
-    static func getCheckedOutGamesCount() -> Int {
-        return checkedOutGames.count
-    }
-    static func getGameFromCurrentLibrary(at index: Int) -> Game {
-        return currentGameLibrary[index]
-    }
-    static func getGameFromOutGames(at index: Int) -> Game {
-        return checkedOutGames[index]
-    }
-    static func removeFromOutGames (at index: Int) {
-        checkedOutGames.remove(at: index - 1)
-    }
+    
     static func returnGame(game: Game) {
         currentGameLibrary.append(game)
         game.checkedInDate = Date()
@@ -53,7 +64,9 @@ private static var checkedOutGames = [Game]()
     }
     
     
-    
+    static func removeFromOutGames (at index: Int) {
+        checkedOutGames.remove(at: index - 1)
+    }
     
     
     static func removeFromCurrentLibrary(at slot: Int) {

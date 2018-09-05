@@ -8,9 +8,13 @@
 
 import Foundation
 class Menu {
+    let dataImporter = DataImporter()
     
-    func start() {
+    
+     func start() {
+        dataImporter.readInformation()
         
+        dataImporter.testing()
         print("""
         Welcome to the video game library!
         Menu commands:
@@ -60,7 +64,7 @@ class Menu {
             quit()
             return
         default:
-            print("Error")
+          break
         }
     } // End of CheckInput
     
@@ -82,12 +86,12 @@ class Menu {
     func checkOutGame() {
         var userChoice: Int
         repeat {
-        print("Please enter the number of the game you would like to check out.")
-        userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
-        if userChoice > Library.currentGameLibrary.count {
-            print("Not a valid selection.")
-            continue
-        }
+            print("Please enter the number of the game you would like to check out.")
+            userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
+            if userChoice > Library.currentGameLibrary.count {
+                print("Not a valid selection.")
+                continue
+            }
         }  while userChoice > Library.currentGameLibrary.count || userChoice <= 0
         
         let selectedGame = Library.currentGameLibrary[userChoice - 1]
@@ -97,7 +101,7 @@ class Menu {
     } // end of CheckOutGame
     
     func removeGame() {
-     var userChoice: Int
+        var userChoice: Int
         repeat {
             print("Please enter the number of the game you would like to remove.")
             userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
@@ -127,11 +131,14 @@ class Menu {
     
     func quit() {
         print("Goodbye!")
+        dataImporter.resetSave()
+        DataImporter.saveInformation()
         exit(25)
     } // end of quit
     
     func help() {
         print("""
+
         Menu commands:
         1. Add Game
         2. Remove Game
