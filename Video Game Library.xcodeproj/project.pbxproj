@@ -12,6 +12,7 @@
 		7BB98D5E213836DC00D83957 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB98D5D213836DC00D83957 /* Game.swift */; };
 		7BB98D602138372C00D83957 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB98D5F2138372C00D83957 /* Menu.swift */; };
 		7BB98D622138656000D83957 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB98D612138656000D83957 /* Library.swift */; };
+		7BC48B952141B0D500D51FAE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC48B942141B0D500D51FAE /* User.swift */; };
 		7BFF8CF6213EF1AC0042D1FB /* DataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF8CF5213EF1AC0042D1FB /* DataImporter.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		7BB98D5D213836DC00D83957 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		7BB98D5F2138372C00D83957 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		7BB98D612138656000D83957 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		7BC48B942141B0D500D51FAE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7BFF8CF5213EF1AC0042D1FB /* DataImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +75,7 @@
 				7BB98D5F2138372C00D83957 /* Menu.swift */,
 				7BB98D612138656000D83957 /* Library.swift */,
 				7BFF8CF5213EF1AC0042D1FB /* DataImporter.swift */,
+				7BC48B942141B0D500D51FAE /* User.swift */,
 			);
 			path = "Video Game Library";
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 				7BFF8CF6213EF1AC0042D1FB /* DataImporter.swift in Sources */,
 				7BB98D602138372C00D83957 /* Menu.swift in Sources */,
 				7BB98D55213836A900D83957 /* main.swift in Sources */,
+				7BC48B952141B0D500D51FAE /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

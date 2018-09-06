@@ -9,11 +9,13 @@
 import Foundation
 
 let menu = Menu()
-let game = Game(name: "Return of the debug")
-let game2 = Game(name: "Nacho revenge")
-let game3 = Game(name: "The debug strikes back")
-let game4 = Game(name: "DoomHammer")
-let game5 = Game(name: "Triple A trash")
+let user = User(age: 0) //default user is created with an age of 0, the user will be prompted before starting the program to set an age
+user.setUpUserAccount()
+let game = Game(name: "Return of the debug", rating: "T")
+let game2 = Game(name: "Nacho revenge", rating: "E")
+let game3 = Game(name: "The debug strikes back", rating: "M")
+let game4 = Game(name: "DoomHammer", rating: "T")
+let game5 = Game(name: "Triple A trash", rating: "M")
 Library.addToCurrentLibrary(game: game)
 Library.addToCurrentLibrary(game: game2)
 Library.addToCurrentLibrary(game: game3)

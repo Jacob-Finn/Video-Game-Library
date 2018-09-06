@@ -41,6 +41,7 @@ class DataImporter {
                 fileHandle.seekToEndOfFile()
                 fileHandle.write("\(game.name)\n".data(using: String.Encoding.utf8)!)
                 fileHandle.write("\(game.returnDateString)\n".data(using: String.Encoding.utf8)!)
+                fileHandle.write("\(game.ageRequired)\n".data(using: String.Encoding.utf8)!)
                 if game.checkedInString != nil {
                     fileHandle.write(("\(game.checkedInString!)".data(using: String.Encoding.utf8)!))
                 } else {

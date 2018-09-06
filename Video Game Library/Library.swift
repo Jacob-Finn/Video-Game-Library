@@ -12,7 +12,7 @@ class Library {
     private static var checkedOutGames = [Game]()
     private  static var returnGamesByDate = [String: String]()
     static var currentGameLibrary = [Game]()
-
+    
     
     // Setters and getters
     
@@ -28,7 +28,7 @@ class Library {
     static func getGameFromOutGames(at index: Int) -> Game {
         return checkedOutGames[index]
     }
-    static func getCurrentLibrary() -> [Game]{
+    static func getCurrentLibrary() -> [Game] {
         return currentGameLibrary
     }
     static func getCheckedOutGames() -> [Game] {
@@ -39,17 +39,15 @@ class Library {
     
     
     // Using method overrides to allow me to manually add a game as well as add a game by string input
-    static func addToCurrentLibrary (game: String)
-    {
-        currentGameLibrary.append(Game(name: game))
+    static func addToCurrentLibrary (game: String, rating: String) {
+        currentGameLibrary.append(Game(name: game, rating: rating))
     }
     
-    static func addToCurrentLibrary (game: Game)
-    {
+    static func addToCurrentLibrary (game: Game) {
         currentGameLibrary.append(game)
     }
     
-    static func sortCurrentLibrary(){
+    static func sortCurrentLibrary() {
         currentGameLibrary.sort(by: { $0.name < $1.name})
     }
     
@@ -69,20 +67,20 @@ class Library {
     }
     
     
-    static func removeFromCurrentLibrary(at slot: Int) {
-        print("Removing \(currentGameLibrary[slot].name)")
-        currentGameLibrary.remove(at: slot)
+    static func removeFromCurrentLibrary(at index: Int) {
+        print("Removing \(currentGameLibrary[index - 1].name)")
+        currentGameLibrary.remove(at: index - 1)
     }
     
     static func checkOutGame(game: Game) {
         checkedOutGames.append(game)
         returnGamesByDate[game.name] = game.returnDateString
     }
-    static func printOutGames()
-    {
+    
+    static func printOutGames() {
         print("The games you currently have out:")
         for (Index, game) in checkedOutGames.enumerated() {
-            print("\(Index + 1). \(game.name) needs to be returned by \(returnGamesByDate[game.name]!)")
+            print("\(Index + 1). \(game.name) with a rating of \(game.rating) needs to be returned by \(returnGamesByDate[game.name]!)")
         }
     }
     
@@ -90,11 +88,10 @@ class Library {
         sortCurrentLibrary()
         for (Index, game) in currentGameLibrary.enumerated() {
             if game.checkedInString != nil {
-                print("\(Index + 1). \(game.name)\n   Returned: \(game.checkedInString!)")
+                print("\(Index + 1). \(game.name)| Rating: \(game.rating)\n   Returned: \(game.checkedInString!)")
             }else {
-                print("\(Index + 1). \(game.name)")
+                print("\(Index + 1). \(game.name)| Rating: \(game.rating)")
             }
         }
     }
-    
 }
