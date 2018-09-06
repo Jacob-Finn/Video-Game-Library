@@ -4,7 +4,9 @@
 //
 //  Created by Jacob Finn on 9/6/18.
 //  Copyright © 2018 Jacob Finn. All rights reserved.
-//
+/*
+    The user class was made in order to solve the two challenges that we were presented in class, the User class saves two variables. Age, and isAdmin. At any time the user types "SuperSecretPassword" the user.isAdmin gets set to true and allows for the user to add games in. Which usually a normal user wouldn't be allowed to do, and the age int is used in order to check if the user is old enough to check out a game.
+ */
 
 import Foundation
 class User {

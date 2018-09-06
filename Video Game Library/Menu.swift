@@ -43,7 +43,7 @@ class Menu {
             removeGame()
             return
         case 3:
-            Library.printCurrentLibrary()
+            Library.printGameLibrary()
             return
         case 4:
             checkOutGame()
@@ -92,17 +92,17 @@ class Menu {
         if (Library.getCurrentLibraryCount() != 0) {
             repeat {
                 print("Please enter the number of the game you would like to check out.")
-                userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
-                if userChoice > Library.currentGameLibrary.count {
+                userChoice = InputManager.playerInput(numberOfChoices: Library.gameLibrary.count)
+                if userChoice > Library.gameLibrary.count {
                     print("Not a valid selection.")
                     continue
                 }
-            }  while userChoice > Library.currentGameLibrary.count || userChoice <= 0
+            }  while userChoice > Library.gameLibrary.count || userChoice <= 0
             
-            let selectedGame = Library.currentGameLibrary[userChoice - 1]
+            let selectedGame = Library.gameLibrary[userChoice - 1]
             let checkedOut = selectedGame.checkOut() // This function returns a bool if the game was checked out or not. Used for age verification.
             if (checkedOut) {
-            Library.removeFromCurrentLibrary(at: userChoice - 1)
+                Library.removeFromGameLibrary(at: userChoice - 1)
             }else {
                 return
             }
@@ -111,66 +111,66 @@ class Menu {
         }
     } // end of CheckOutGame
     
+    
     func removeGame() {
         var userChoice: Int
         if Library.getCurrentLibraryCount() != 0 {
-        repeat {
-            print("Please enter the number of the game you would like to remove.")
-            userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
-            if userChoice > Library.currentGameLibrary.count {
-                print("Not a valid selection.")
-                return
-            }
-        }  while userChoice > Library.currentGameLibrary.count || userChoice <= 0
-        Library.removeFromCurrentLibrary(at: userChoice)
+            repeat {
+                print("Please enter the number of the game you would like to remove.")
+                userChoice = InputManager.playerInput(numberOfChoices: Library.gameLibrary.count)
+                if userChoice > Library.gameLibrary.count {
+                    print("Not a valid selection.")
+                    return
+                }
+            }  while userChoice > Library.gameLibrary.count || userChoice <= 0
+            Library.removeFromGameLibrary(at: userChoice)
         } else {
             print("No games to remove!")
         }
     } // end of Remove game
     
+    
     func addGame() {
         if (user.isAdmin) {
-        let gameName: String? = nil
-        print("What is the game's name?")
-        repeat {
-            let userInput = readLine()
-            if userInput == "" {
-                print("Invalid Input!")
-                return
-            } else {
-                guard let gameName = String?(userInput!) else { return }
-                print("""
+            let gameName: String? = nil
+            print("What is the game's name?")
+            repeat {
+                let userInput = readLine()
+                if userInput == "" {
+                    print("Invalid Input!")
+                    return
+                } else {
+                    guard let gameName = String?(userInput!) else { return }
+                    print("""
                         What is the game's rating?
                         1. Rating "E" - Every age.
                         2. Rating "T" - Only 13 and up.
                         3. Rating "M" - Only 18 and up.
                      """)
-                var gameCreated = false
-                repeat {
-                let userAgeRating = InputManager.playerInput(numberOfChoices: 3)
-                switch userAgeRating {
-                case 1:
-                Library.addToCurrentLibrary(game: gameName, rating: "E")
-                print("Adding \(gameName), with a rating of E")
-                    gameCreated = true
-                case 2:
-                Library.addToCurrentLibrary(game: gameName, rating: "T")
-                print("Adding \(gameName), with a rating of T")
-                gameCreated = true
-                case 3:
-                Library.addToCurrentLibrary(game: gameName, rating: "M")
-                print("Adding \(gameName), with a rating of M")
-                    gameCreated = true
-                default:
-                    print("You must use a number!")
-                    continue
+                    var gameCreated = false
+                    repeat {
+                        let userAgeRating = InputManager.playerInput(numberOfChoices: 3)
+                        switch userAgeRating {
+                        case 1:
+                            Library.addToGameLibrary(game: gameName, rating: "E")
+                            print("Adding \(gameName), with a rating of E")
+                            gameCreated = true
+                        case 2:
+                            Library.addToGameLibrary(game: gameName, rating: "T")
+                            print("Adding \(gameName), with a rating of T")
+                            gameCreated = true
+                        case 3:
+                            Library.addToGameLibrary(game: gameName, rating: "M")
+                            print("Adding \(gameName), with a rating of M")
+                            gameCreated = true
+                        default:
+                            print("You must use a number!")
+                            continue
+                        }
+                    } while !gameCreated
                 }
-                } while !gameCreated
-                
-                
-            }
-        } while gameName != nil
-        print("Game added!")
+            } while gameName != nil
+            print("Game added!")
         }else {
             print("You're not a system admin. If you remember the password, you can turn on admin mode at any time.")
             return

@@ -11,48 +11,55 @@ class Library {
     
     private static var checkedOutGames = [Game]()
     private  static var returnGamesByDate = [String: String]()
-    static var currentGameLibrary = [Game]()
+    static var gameLibrary = [Game]()
     
     
     // Setters and getters
     
     static func getCurrentLibraryCount() -> Int {
-        return currentGameLibrary.count
+        return gameLibrary.count // returns the current size of the game library array
     }
     static func getCheckedOutGamesCount() -> Int {
-        return checkedOutGames.count
+        return checkedOutGames.count // returns the current size of the checked out games array
     }
     static func getGameFromCurrentLibrary(at index: Int) -> Game {
-        return currentGameLibrary[index]
+        return gameLibrary[index] // returns a game at a specific index from the currentGameLibrary Array
     }
     static func getGameFromOutGames(at index: Int) -> Game {
-        return checkedOutGames[index]
+        return checkedOutGames[index] // returns a game at a specficic index from the checkedOutGames Array
     }
     static func getCurrentLibrary() -> [Game] {
-        return currentGameLibrary
+        return gameLibrary // returns the current game library array. Since it is a private varaible.
     }
     static func getCheckedOutGames() -> [Game] {
-        return checkedOutGames
+        return checkedOutGames // returns the checked out games array since it is a private variable. We need to use this to access it.
     }
     
     
     
     
-    // Using method overrides to allow me to manually add a game as well as add a game by string input
-    static func addToCurrentLibrary (game: String, rating: String) {
-        currentGameLibrary.append(Game(name: game, rating: rating))
+    // Using method overrides to allow me to manually add a game. As well as allowing me to add a game by string input
+    static func addToGameLibrary (game: String, rating: String) {
+        gameLibrary.append(Game(name: game, rating: rating)) // adds a game to the game library using a condition of game and rating.
     }
     
-    static func addToCurrentLibrary (game: Game) {
-        currentGameLibrary.append(game)
+    static func addToGameLibrary (game: Game) {
+        gameLibrary.append(game) // adds a game to the game library using a created game.
     }
     
-    static func sortCurrentLibrary() {
-        currentGameLibrary.sort(by: { $0.name < $1.name})
+    
+    static func sortGameLibrary() {
+        gameLibrary.sort(by: { $0.name < $1.name}) // Whenever we are going to display the game liberary we call this function to sort it and make it look better
     }
     
+    /*
+     Whenever we are going to return a game we will append the game back to the end of the game library array and then we'll set the 
+     checkedInDate equal to the current date and format it using a date formatter.
+     For convinence I set this date to a string as it is easier to display and write to a file. that would've worked with the DataImporter class
+     Unfortunately, I never finished the DataImporter class. The game still functions like normal but doesn't have a save feature.
+    */
     static func returnGame(game: Game) {
-        currentGameLibrary.append(game)
+        gameLibrary.append(game)
         game.checkedInDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
@@ -67,9 +74,9 @@ class Library {
     }
     
     
-    static func removeFromCurrentLibrary(at index: Int) {
-        print("Removing \(currentGameLibrary[index - 1].name)")
-        currentGameLibrary.remove(at: index - 1)
+    static func removeFromGameLibrary(at index: Int) {
+        print("Removing \(gameLibrary[index - 1].name)")
+        gameLibrary.remove(at: index - 1)
     }
     
     static func checkOutGame(game: Game) {
@@ -84,12 +91,12 @@ class Library {
         }
     }
     
-    static func printCurrentLibrary() {
-        sortCurrentLibrary()
-        for (Index, game) in currentGameLibrary.enumerated() {
-            if game.checkedInString != nil {
+    static func printGameLibrary() {
+        sortGameLibrary()
+        for (Index, game) in gameLibrary.enumerated() {
+            if game.checkedInString != nil { // If the game has been checked in before then we will print it with the date
                 print("\(Index + 1). \(game.name)| Rating: \(game.rating)\n   Returned: \(game.checkedInString!)")
-            }else {
+            }else { // if the game hasn't been checked in before then we will print it like normal.
                 print("\(Index + 1). \(game.name)| Rating: \(game.rating)")
             }
         }
