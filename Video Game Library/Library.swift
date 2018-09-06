@@ -75,8 +75,8 @@ class Library {
     
     
     static func removeFromGameLibrary(at index: Int) {
-        print("Removing \(gameLibrary[index - 1].name)")
-        gameLibrary.remove(at: index - 1)
+        print("Removing \(gameLibrary[index].name)")
+        gameLibrary.remove(at: index)
     }
     
     static func checkOutGame(game: Game) {
@@ -95,9 +95,9 @@ class Library {
         sortGameLibrary()
         for (Index, game) in gameLibrary.enumerated() {
             if game.checkedInString != nil { // If the game has been checked in before then we will print it with the date
-                print("\(Index + 1). \(game.name)| Rating: \(game.rating)\n   Returned: \(game.checkedInString!)")
+                print("\(Index + 1). \(game.name)\nRating: \(game.rating)\nReturned: \(game.checkedInString!)")
             }else { // if the game hasn't been checked in before then we will print it like normal.
-                print("\(Index + 1). \(game.name)| Rating: \(game.rating)")
+                print("\(Index + 1). \(game.name)\nRating: \(game.rating)")
             }
         }
     }

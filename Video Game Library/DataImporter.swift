@@ -68,7 +68,7 @@ class DataImporter {
             implementSave()
         
         } catch {
-            print("error reading information")
+            print("Error reading save. This is probably your first time running this program. If so, disregard this!")
         }
     }
     func implementSave() { // Not yet functional but it is at a point to where it could be installed.

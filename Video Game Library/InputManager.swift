@@ -17,8 +17,12 @@ class InputManager  {
         repeat {
             userInput = readLine()!.trimmingCharacters(in: .whitespacesAndNewlines)
             if userInput?.lowercased() == "quit" {
-               menu.quit()
-               break
+                menu.quit()
+                break
+            }
+            if userInput?.lowercased() == "clear" { // a helpful function if the console is starting to get too cluttered.
+                print("\n\n\n\n\n\n\n\n\n\n")
+                break;
             }
             if userInput == "SuperSecretPassword" { // Notice the capitals! This is a super secret password after all.
                 user.isAdmin = true
