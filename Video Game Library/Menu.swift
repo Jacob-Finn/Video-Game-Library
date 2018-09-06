@@ -68,6 +68,9 @@ class Menu {
     
     func checkInGame() {
         var userChoice: Int
+        if (Library.getCheckedOutGamesCount() != 0)
+        {
+        Library.printOutGames()
         repeat {
             print("Please enter the number of the game you would like to return.")
             userChoice = InputManager.playerInput(numberOfChoices: Library.getCheckedOutGamesCount())
@@ -79,10 +82,15 @@ class Menu {
         let selectedGame = Library.getGameFromOutGames(at: userChoice - 1)
         Library.returnGame(game: selectedGame)
         Library.removeFromOutGames(at: userChoice)
+        } else {
+            print("You don't have any checked out games currently!")
+        }
     } // end of checkInGame
     
     func checkOutGame() {
         var userChoice: Int
+        if (Library.getCurrentLibraryCount() != 0)
+        {
         repeat {
             print("Please enter the number of the game you would like to check out.")
             userChoice = InputManager.playerInput(numberOfChoices: Library.currentGameLibrary.count)
@@ -95,7 +103,9 @@ class Menu {
         let selectedGame = Library.currentGameLibrary[userChoice - 1]
         selectedGame.checkOut()
         Library.removeFromCurrentLibrary(at: userChoice - 1)
-        
+        } else {
+            print("We're out of games currently!")
+        }
     } // end of CheckOutGame
     
     func removeGame() {
@@ -149,12 +159,4 @@ class Menu {
 
         """)
     }// end of help
-    
-    
-    
-    
-    
-    
-    
-    
 }

@@ -14,7 +14,7 @@ class Library {
     static var currentGameLibrary = [Game]()
 
     
-    // Setters
+    // Setters and getters
     
     static func getCurrentLibraryCount() -> Int {
         return currentGameLibrary.count
