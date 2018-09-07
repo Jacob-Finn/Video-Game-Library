@@ -86,7 +86,7 @@ class DataImporter {
             savedGameName = savedGameName.trimmingCharacters(in: .whitespacesAndNewlines)
             print("Saved game found: \(savedGameName)")
             increasingIndex += 1
-            if (savedGamesArray[increasingIndex] != "")
+            if savedGamesArray[increasingIndex] != ""
             {
                 savedGameReturnString = savedGamesArray[increasingIndex]
                 increasingIndex += 1
@@ -96,7 +96,7 @@ class DataImporter {
             }
             savedGameAgeRequired = Int(savedGamesArray[increasingIndex])!
             increasingIndex += 1
-            if (savedGamesArray[increasingIndex] != "") // If there is actually something here then we'll grab it, otherwise skip over it.
+            if savedGamesArray[increasingIndex] != "" // If there is actually something here then we'll grab it, otherwise skip over it.
             {
                 savedGameCheckedIn = savedGamesArray[increasingIndex]
                 let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: savedGameCheckedIn)

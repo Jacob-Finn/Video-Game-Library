@@ -17,16 +17,16 @@ user.setUpUserAccount()
 
 if Library.getCurrentLibraryCount() == 0
 {
-let game = Game(name: "Return of the debug", rating: "T")
-let game2 = Game(name: "Nacho revenge", rating: "E")
-let game3 = Game(name: "The debug strikes back", rating: "M")
-let game4 = Game(name: "DoomHammer", rating: "T")
-let game5 = Game(name: "Triple A trash", rating: "M")
-Library.addToGameLibrary(game: game)
-Library.addToGameLibrary(game: game2)
-Library.addToGameLibrary(game: game3)
-Library.addToGameLibrary(game: game4)
-Library.addToGameLibrary(game: game5)
+    let game = Game(name: "Return of the debug", rating: "T")
+    let game2 = Game(name: "Nacho revenge", rating: "E")
+    let game3 = Game(name: "The debug strikes back", rating: "M")
+    let game4 = Game(name: "DoomHammer", rating: "T")
+    let game5 = Game(name: "Triple A trash", rating: "M")
+    Library.addToGameLibrary(game: game)
+    Library.addToGameLibrary(game: game2)
+    Library.addToGameLibrary(game: game3)
+    Library.addToGameLibrary(game: game4)
+    Library.addToGameLibrary(game: game5)
 }else {
     menu.start()
 }

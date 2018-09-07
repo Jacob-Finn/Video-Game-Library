@@ -67,7 +67,7 @@ class Menu {
     
     func checkInGame() {
         var userChoice: Int
-        if (Library.getCheckedOutGamesCount() != 0) {
+        if Library.getCheckedOutGamesCount() != 0 {
             Library.printOutGames()
             repeat {
                 print("Please enter the number of the game you would like to return.")
@@ -88,7 +88,7 @@ class Menu {
     
     func checkOutGame() {
         var userChoice: Int
-        if (Library.getCurrentLibraryCount() != 0) {
+        if Library.getCurrentLibraryCount() != 0 {
             repeat {
                 print("Please enter the number of the game you would like to check out.")
                 userChoice = InputManager.playerInput(numberOfChoices: Library.gameLibrary.count)
@@ -130,7 +130,7 @@ class Menu {
     
     
     func addGame() {
-        if (user.isAdmin) {
+        if user.isAdmin {
             let gameName: String? = nil
             print("What is the game's name?")
             repeat {

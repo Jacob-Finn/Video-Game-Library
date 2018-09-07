@@ -57,7 +57,7 @@ class Library {
      checkedInDate equal to the current date and format it using a date formatter.
      For convinence I set this date to a string as it is easier to display and write to a file. that would've worked with the DataImporter class
      Unfortunately, I never finished the DataImporter class. The game still functions like normal but doesn't have a save feature.
-    */
+     */
     static func returnGame(game: Game) {
         gameLibrary.append(game)
         game.checkedInDate = Date()

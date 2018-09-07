@@ -67,7 +67,7 @@ class Game {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
         guard let date = date else { return nil }
-       let returnDate = dateFormatter.date(from: date)
+        let returnDate = dateFormatter.date(from: date)
         return returnDate
     }
     
@@ -77,7 +77,7 @@ class Game {
     func checkOut() -> Bool { // this returns a bool if the game was checked out or not.
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
-        if (user.age >= self.ageRequired) {
+        if user.age >= self.ageRequired {
             returnDate = Date()
             guard var checkedOutDate = returnDate else { return false }
             let twoWeeksLater = Double(60 * 60 * 24 * 7 * 2)
