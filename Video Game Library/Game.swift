@@ -76,13 +76,14 @@ class Game {
     
     func checkOut() -> Bool { // this returns a bool if the game was checked out or not.
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
         if (user.age >= self.ageRequired) {
             returnDate = Date()
             guard var checkedOutDate = returnDate else { return false }
             let twoWeeksLater = Double(60 * 60 * 24 * 7 * 2)
             checkedOutDate.addTimeInterval(twoWeeksLater)
             print("Your game is due back \(dateFormatter.string(from: checkedOutDate)) ")
-            returnDateString = dateFormatter.string(from: checkedOutDate)
+            self.returnDateString = dateFormatter.string(from: checkedOutDate)
             returnDate = checkedOutDate
             Library.checkOutGame(game: self)
             return true
