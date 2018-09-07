@@ -96,6 +96,7 @@ class DataImporter {
             }
             guard let savedGameAgeRequired = Int(savedGamesArray[increasingIndex]) else {
                 print("Error reading save file at Index \(increasingIndex). You will probably need to delete your save file.")
+                reconstructedGamesArray.removeAll()
                 break
             }
             increasingIndex += 1
