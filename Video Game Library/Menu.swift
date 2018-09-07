@@ -8,10 +8,9 @@
 
 import Foundation
 class Menu {
-    let dataImporter = DataImporter() // Mostly unused
+    let dataImporter = DataImporter()
     
     func start() {
-        dataImporter.readInformation()
         print("""
         Welcome to the video game library!
         Menu commands:
@@ -179,8 +178,8 @@ class Menu {
     
     func quit() {
         print("Goodbye!")
-        dataImporter.resetSave()
-        //  DataImporter.saveInformation() Will be used for saving later. Right now doesn't work
+        dataImporter.resetSave() // removing old information and then saving over for new information.
+        dataImporter.saveInformation()
         exit(25)
     } // end of quit
     

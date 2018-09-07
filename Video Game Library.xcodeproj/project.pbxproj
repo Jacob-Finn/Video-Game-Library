@@ -74,8 +74,8 @@
 				7BB98D5D213836DC00D83957 /* Game.swift */,
 				7BB98D5F2138372C00D83957 /* Menu.swift */,
 				7BB98D612138656000D83957 /* Library.swift */,
-				7BFF8CF5213EF1AC0042D1FB /* DataImporter.swift */,
 				7BC48B942141B0D500D51FAE /* User.swift */,
+				7BFF8CF5213EF1AC0042D1FB /* DataImporter.swift */,
 			);
 			path = "Video Game Library";
 			sourceTree = "<group>";
