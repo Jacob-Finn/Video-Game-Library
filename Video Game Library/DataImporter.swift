@@ -72,7 +72,7 @@ class DataImporter {
             print("Error reading save. This is probably your first time running this program. If so, disregard this!")
         }
     }
-    private func implementSave() { // Not yet functional but it is at a point to where it could be installed.
+    private func implementSave() {
         savedGamesArray.remove(at: (savedGamesArray.count - 1)) // removing the blank space at the end.
         var reconstructedGamesArray = [Game]() // The array we'll store our new games in.
         var increasingIndex = 0
@@ -82,33 +82,36 @@ class DataImporter {
         var savedGameCheckedIn: String?
         while increasingIndex < savedGamesArray.count
         {
-            savedGameName = savedGamesArray[increasingIndex]
-            savedGameName = savedGameName.trimmingCharacters(in: .whitespacesAndNewlines)
-            print("Saved game found: \(savedGameName)")
-            increasingIndex += 1
-            if savedGamesArray[increasingIndex] != ""
-            {
-                savedGameReturnString = savedGamesArray[increasingIndex]
+                savedGameName = savedGamesArray[increasingIndex]
+                savedGameName = savedGameName.trimmingCharacters(in: .whitespacesAndNewlines)
+                print("Saved game found: \(savedGameName)")
                 increasingIndex += 1
-            }else {
-                savedGameReturnString = nil
+                if savedGamesArray[increasingIndex] != ""
+                {
+                  savedGameReturnString = savedGamesArray[increasingIndex]
+                    increasingIndex += 1
+                }else {
+                    savedGameReturnString = nil
+                    increasingIndex += 1
+                }
+                guard let savedGameAgeRequired = Int(savedGamesArray[increasingIndex]) else {
+                    print("Error reading save file at Index \(increasingIndex). You will probably need to delete your save file.")
+                    break
+                }
                 increasingIndex += 1
+                if savedGamesArray[increasingIndex] != "" // If there is actually something here then we'll grab it, otherwise skip over it.
+                {
+                    savedGameCheckedIn = savedGamesArray[increasingIndex]
+                    let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: savedGameCheckedIn)
+                    reconstructedGamesArray.append(game)
+                    increasingIndex += 3 // we skip by three here to avoid the comma
+                } else {
+                    savedGameCheckedIn = nil
+                    let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: nil)
+                    reconstructedGamesArray.append(game)
+                    increasingIndex += 3 // we skip by three here to avoid the comma if there wasn't a checkedIn String
+                }
             }
-            savedGameAgeRequired = Int(savedGamesArray[increasingIndex])!
-            increasingIndex += 1
-            if savedGamesArray[increasingIndex] != "" // If there is actually something here then we'll grab it, otherwise skip over it.
-            {
-                savedGameCheckedIn = savedGamesArray[increasingIndex]
-                let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: savedGameCheckedIn)
-                reconstructedGamesArray.append(game)
-                increasingIndex += 3 // we skip by three here to avoid the comma
-            } else {
-                savedGameCheckedIn = nil
-                let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: nil)
-                reconstructedGamesArray.append(game)
-                increasingIndex += 3 // we skip by three here to avoid the comma if there wasn't a checkedIn String
-            }
-        }
         for game in reconstructedGamesArray {
             Library.addToGameLibrary(game: game)
         }

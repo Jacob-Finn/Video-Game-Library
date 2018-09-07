@@ -17,7 +17,7 @@ class Game {
     let rating: String
     let ageRequired: Int
     
-    init(name: String, rating: String ) { // this is our normal init.
+    init(name: String, rating: String) { // this is our normal init.
         self.name = name
         self.rating = rating
         self.returnDate = nil
