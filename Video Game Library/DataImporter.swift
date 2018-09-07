@@ -82,36 +82,36 @@ class DataImporter {
         var savedGameCheckedIn: String?
         while increasingIndex < savedGamesArray.count
         {
-                savedGameName = savedGamesArray[increasingIndex]
-                savedGameName = savedGameName.trimmingCharacters(in: .whitespacesAndNewlines)
-                print("Saved game found: \(savedGameName)")
+            savedGameName = savedGamesArray[increasingIndex]
+            savedGameName = savedGameName.trimmingCharacters(in: .whitespacesAndNewlines)
+            print("Saved game found: \(savedGameName)")
+            increasingIndex += 1
+            if savedGamesArray[increasingIndex] != ""
+            {
+                savedGameReturnString = savedGamesArray[increasingIndex]
                 increasingIndex += 1
-                if savedGamesArray[increasingIndex] != ""
-                {
-                  savedGameReturnString = savedGamesArray[increasingIndex]
-                    increasingIndex += 1
-                }else {
-                    savedGameReturnString = nil
-                    increasingIndex += 1
-                }
-                guard let savedGameAgeRequired = Int(savedGamesArray[increasingIndex]) else {
-                    print("Error reading save file at Index \(increasingIndex). You will probably need to delete your save file.")
-                    break
-                }
+            }else {
+                savedGameReturnString = nil
                 increasingIndex += 1
-                if savedGamesArray[increasingIndex] != "" // If there is actually something here then we'll grab it, otherwise skip over it.
-                {
-                    savedGameCheckedIn = savedGamesArray[increasingIndex]
-                    let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: savedGameCheckedIn)
-                    reconstructedGamesArray.append(game)
-                    increasingIndex += 3 // we skip by three here to avoid the comma
-                } else {
-                    savedGameCheckedIn = nil
-                    let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: nil)
-                    reconstructedGamesArray.append(game)
-                    increasingIndex += 3 // we skip by three here to avoid the comma if there wasn't a checkedIn String
-                }
             }
+            guard let savedGameAgeRequired = Int(savedGamesArray[increasingIndex]) else {
+                print("Error reading save file at Index \(increasingIndex). You will probably need to delete your save file.")
+                break
+            }
+            increasingIndex += 1
+            if savedGamesArray[increasingIndex] != "" // If there is actually something here then we'll grab it, otherwise skip over it.
+            {
+                savedGameCheckedIn = savedGamesArray[increasingIndex]
+                let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: savedGameCheckedIn)
+                reconstructedGamesArray.append(game)
+                increasingIndex += 3 // we skip by three here to avoid the comma
+            } else {
+                savedGameCheckedIn = nil
+                let game = Game(name: savedGameName, savedGameReturnString: savedGameReturnString, ageRequired: savedGameAgeRequired, gameCheckedInString: nil)
+                reconstructedGamesArray.append(game)
+                increasingIndex += 3 // we skip by three here to avoid the comma if there wasn't a checkedIn String
+            }
+        }
         for game in reconstructedGamesArray {
             Library.addToGameLibrary(game: game)
         }
