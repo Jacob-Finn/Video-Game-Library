@@ -77,7 +77,6 @@ class DataImporter {
         var reconstructedGamesArray = [Game]() // The array we'll store our new games in.
         var increasingIndex = 0
         var savedGameName: String
-        var savedGameAgeRequired: Int
         var savedGameReturnString: String?
         var savedGameCheckedIn: String?
         while increasingIndex < savedGamesArray.count

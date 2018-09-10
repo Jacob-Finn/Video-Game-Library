@@ -49,14 +49,13 @@ class Library {
     
     
     static func sortGameLibrary() {
-        gameLibrary.sort(by: { $0.name < $1.name}) // Whenever we are going to display the game liberary we call this function to sort it and make it look better
+        gameLibrary.sort(by: { $0.name < $1.name}) // Whenever we are going to display the game library we call this function to sort it and make it look better
     }
     
     /*
      Whenever we are going to return a game we will append the game back to the end of the game library array and then we'll set the 
      checkedInDate equal to the current date and format it using a date formatter.
-     For convinence I set this date to a string as it is easier to display and write to a file. that would've worked with the DataImporter class
-     Unfortunately, I never finished the DataImporter class. The game still functions like normal but doesn't have a save feature.
+     For convinence I set this date to a string as it is easier to display and write to a file.
      */
     static func returnGame(game: Game) {
         gameLibrary.append(game)

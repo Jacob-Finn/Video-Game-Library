@@ -37,28 +37,20 @@ class Menu {
         switch userChoice {
         case 1:
             addGame()
-            return
         case 2:
             removeGame()
-            return
         case 3:
             Library.printGameLibrary()
-            return
         case 4:
             checkOutGame()
-            return
         case 5:
             checkInGame()
-            return
         case 6:
             Library.printOutGames()
-            return
         case 7:
             help()
-            return
         case 8:
             quit()
-            return
         default:
             break
         }
